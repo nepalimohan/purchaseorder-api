@@ -26,3 +26,9 @@ class PurchaseOrderCreateAPIView(APIView):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
+class PurchaseOrderCreateViewset(viewsets.ViewSet):
+    def list(self, request):
+        queryset = models.PurchaseOrders.objects.all()
+        serializer = serializers.PurchaseOrderSerializer(queryset, many=True)
+        return Response(serializer.data)
+        
