@@ -52,8 +52,8 @@ class PurchaseOrders(models.Model):
 		ordering = ['-id']
 
 	def __str__(self) -> str:
-		return self.unique_id
-		# return f"{self.id}"
+		# return self.unique_id
+		return f"{self.id}"
 
 	# def save(self, *args, **kwargs):
 	# 	if self.unique_id == '' or self.unique_id is None:
