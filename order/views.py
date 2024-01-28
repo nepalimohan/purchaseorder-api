@@ -47,4 +47,8 @@ class PurchaseOrderCreateViewset(viewsets.ViewSet):
         queryset = models.PurchaseOrders.objects.get(pk=pk)
         serializer = serializers.PurchaseOrderSerializer(queryset)
         return Response(serializer.data)
+
+class PurchaseOrderUpdateApiview(APIView):
+    def post(self, request, pk):
+        pass
         
