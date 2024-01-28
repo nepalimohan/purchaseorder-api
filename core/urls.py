@@ -6,7 +6,7 @@ from rest_framework.routers import DefaultRouter
 from order import views
 
 router = DefaultRouter()
-router.register(r'purchase-order', views.PurchaseOrderCreateViewset, basename='purchase_order')
+router.register(r'purchase-order-viewset', views.PurchaseOrderCreateViewset, basename='purchase_order')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
