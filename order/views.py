@@ -31,4 +31,9 @@ class PurchaseOrderCreateViewset(viewsets.ViewSet):
         queryset = models.PurchaseOrders.objects.all()
         serializer = serializers.PurchaseOrderSerializer(queryset, many=True)
         return Response(serializer.data)
+    
+    def retrieve(self, request, pk=None):
+        queryset = models.PurchaseOrders.objects.all()
+        serializer = serializers.PurchaseOrderSerializer(queryset)
+        return Response(serializer.data)
         
