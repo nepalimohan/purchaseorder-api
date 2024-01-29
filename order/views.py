@@ -49,6 +49,16 @@ class PurchaseOrderCreateViewset(viewsets.ViewSet):
         return Response(serializer.data)
 
 class PurchaseOrderUpdateApiview(APIView):
+    def get(self, request, pk):
+        query = models.PurchaseOrders.objects.get(pk=pk)
+        serializer = serializers.PurchaseOrderSerializer(query)
+        return Response(serializer.data)
+        
     def post(self, request, pk):
-        pass
+        query = models.PurchaseOrders.objects.get(pk=pk)
+        serializer = serializers.PurchaseOrderSerializer(query, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
