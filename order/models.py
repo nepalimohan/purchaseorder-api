@@ -62,6 +62,7 @@ class PurchaseOrders(models.Model):
 
 
 class PurchaseOrdersItem(models.Model):
+	id = models.AutoField(primary_key=True)
 	orders = models.ForeignKey(
 		PurchaseOrders,
 		null=True,

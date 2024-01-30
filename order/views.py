@@ -55,10 +55,13 @@ class PurchaseOrderUpdateApiview(APIView):
         return Response(serializer.data)
         
     def post(self, request, pk):
-        query = models.PurchaseOrders.objects.get(pk=pk)
-        serializer = serializers.PurchaseOrderSerializer(query, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        try:
+            query = models.PurchaseOrders.objects.get(pk=pk)
+            serializer = serializers.PurchaseOrderSerializer(query, data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_200_OK)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         
